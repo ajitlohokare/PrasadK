@@ -26,6 +26,12 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/signin")
+	public String login()
+	{
+		return "index";
+	}
+	
 	@GetMapping("/register")
 	public String register() {
 		return "register";
@@ -37,36 +43,34 @@ public class HomeController {
 	    return "admin/forms-onboarding";
 	  }
 	
-	@PostMapping("/createUser")
-	public String createUser(@ModelAttribute User user , HttpSession session) {
-		
-		//System.out.println(user);
-		
-		//check user is exist or not
-		boolean f=userService.checkEmail(user.getEmail_id());
-		
-		if(f)
-		{
-			//System.out.println("Email id already exist");
-			// session will display on frontend
-			session.setAttribute("msg", "Email id already exist");
-		}else {
-			
-			//if user is not Exist then Create a user
-			 User users=userService.createUser(user);
-			 if(users!=null)
-			 {
-				 //System.out.println("Register Successfully");
-				 session.setAttribute("msg", "Register Successfully");
-			 }else {
-				 //System.out.println("Something wrong on server");
-   				 session.setAttribute("msg", "Something wrong on server");
-			 }
-			
-		}
-		
-		 
-		return "redirect:/register";
-	}
+//	@PostMapping("/register")
+//	public String createUser(@ModelAttribute User user , HttpSession session) {
+//		
+//		//System.out.println(user);
+//		
+//		//check user is exist or not
+//		boolean f=userService.checkEmail(user.getEmail_id());
+//		
+//		if(f)
+//		{
+//			//System.out.println("Email id already exist");
+//			// session will display on frontend
+//			session.setAttribute("msg", "Email id already exist");
+//		}else {
+//			
+//			//if user is not Exist then Create a user
+//			 User users=userService.createUser(user);
+//			 if(users!=null)
+//			 {
+//				 //System.out.println("Register Successfully");
+//				 session.setAttribute("msg", "Register Successfully");
+//			 }else {
+//				 //System.out.println("Something wrong on server");
+//   				 session.setAttribute("msg", "Something wrong on server");
+//			 }
+//		}
+//		 
+//		return "redirect:/register";
+//	}
 	
 }
